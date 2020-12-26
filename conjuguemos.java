@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class conjuguemos {
 	
-static String Pronouns[] = {"Yo","Tú","Él, Ella, Ustedes","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
+static String Pronouns[] = {"Yo","Tú","Él, Ella, Usted","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
 static ArrayList<String> Verbs = new ArrayList<String>();
 static Scanner input = new Scanner(System.in);
 

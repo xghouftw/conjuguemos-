@@ -7,7 +7,7 @@ static ArrayList<String> Verbs = new ArrayList<String>();
 	public static void main(String[] args) throws IOException {
 		
 		Scanner input = new Scanner(System.in);
-		BufferedReader br = new BufferedReader(new FileReader("Verbs.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("VerbBank.txt"));
 		String verb = "";
 		while ((verb = br.readLine()) != null) Verbs.add(verb);
 		

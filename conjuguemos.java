@@ -1,12 +1,12 @@
 import java.util.*;
 public class conjuguemos {
 	
-static String Pronouns[] = {"Yo","Tú","Él, Ella, Ustedes","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
+static String Pronouns[] = {"Yo","TÃº","Ã‰l, Ella, Ustedes","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
 
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
-		System.out.print("Welcome to the Spanish verb conjugation trainer!\nType a number from the menu to continue.\n");
+		System.out.print("***Welcome to the Spanish verb conjugation trainer!***\nType a number from the menu to continue.\n");
 		String Menu[] = {"Quit","Present Indicative","Preterite","Imperfect"};
 		
 		String next;
@@ -18,7 +18,7 @@ static String Pronouns[] = {"Yo","Tú","Él, Ella, Ustedes","Nosotros","Vosotros",
 			if (next.equals("3")) Imperfect();
 			
 		} while (!next.equals("0"));
-		
+		System.out.println("Thank you for playing Spanish verb conjugation trainer. Practice makes Permanent!");
 		
 	}
 	
@@ -32,8 +32,12 @@ static String Pronouns[] = {"Yo","Tú","Él, Ella, Ustedes","Nosotros","Vosotros",
 		
 	}
 	public static void Imperfect() {
+		System.out.println("---Imperfect Mode---\nRespond 0 to Quit");
 		
-		
+		while (true) {
+			
+			
+		}
 		
 	}
 

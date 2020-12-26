@@ -1,3 +1,6 @@
+ir
 jugar
+ser
 tener
+ver
 vivir

@@ -51,26 +51,26 @@ static Scanner input = new Scanner(System.in);
 			String correct = question;
 			correct = question.substring(0,question.length()-2);
 			String ending = question.substring(question.length()-2);
+			
 			if (ending.equals("ar")) {
-				if (pron == 0) correct += "aba";
-				if (pron == 1) correct += "abas";
-				if (pron == 2) correct += "aba";
-				if (pron == 3) correct += "ábamos";
-				if (pron == 4) correct += "abais";
-				if (pron == 5) correct += "aban";
+				String add[] = {"aba","abas","aba","ábamos","abais","aban"};
+				correct += add[pron];
 			}
 			if (ending.equals("er") || ending.equals("ir")) {
-				if (pron == 0) correct += "ía";
-				if (pron == 1) correct += "ías";
-				if (pron == 2) correct += "ía";
-				if (pron == 3) correct += "íamos";
-				if (pron == 4) correct += "íais";
-				if (pron == 5) correct += "ían";
+				String add[] = {"ía","ías","ía","íamos","íais","ían"};
+				correct += add[pron];
 			}
+			
+			String irregulars[][] = {{"ser","era","eras","era","éramos","erais","eran"},{"ir","iba","ibas","iba","íbamos","ibais","iban"},{"ver","veía","veías","veía","veíamos","veíais","veían"}};
+			for (int i = 0; i < 3; i++) {
+				if (question.equals(irregulars[i][0])) {
+					correct = irregulars[i][pron+1];
+				}
+			}
+			
 			if (response.equals(correct)) System.out.println("Correct!");
 			else System.out.println("Incorrect!");
 		}
-		
 	}
 
 }

@@ -49,7 +49,7 @@ static Scanner input = new Scanner(System.in);
 			}
 			
 			if (next.equals("3")) {
-				System.out.println("---Imperfect Mode--\nRespond 0 to Quit to main menu");
+				System.out.println("---Imperfect Mode---\nRespond 0 to Quit to main menu");
 				String response;
 				
 				do {

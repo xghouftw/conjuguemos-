@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class conjuguemos {
 	
-static String Pronouns[] = {"Yo","Tú","Él, Ella, Ustedes","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
+static String Pronouns[] = {"Yo","Tú","Él, Ella, Usted","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
 static ArrayList<String> Verbs = new ArrayList<String>();
 static Scanner input = new Scanner(System.in);
 
@@ -23,11 +23,28 @@ static Scanner input = new Scanner(System.in);
 				PresentIndicative();
 			}
 			if (next.equals("2")) {
-				Preterite();
+				
+				System.out.println("---Preterite Mode---\n\nConjugate the following verbs in the preterite for the given pronouns. \nRespond 0 to Quit to main menu");
+				
+				String response;
+				
+				do {
+					
+					int subjectIndex = (int)(Math.random()*6);
+					String question = Verbs.get((int)(Math.random()*Verbs.size()));
+					System.out.println(Pronouns[subjectIndex] + ", " + question);
+					response = input.nextLine();
+					String answer = Preterite(subjectIndex, question);
+					if (response.equals(answer)) System.out.println("Correct!");
+					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
+				} while (response.equals("0")==false);
+				
 			}
 			if (next.equals("3")) {
+				
 				System.out.println("---Imperfect Mode--\nRespond 0 to Quit to main menu");
 				String response;
+				
 				do {
 					String question = Verbs.get((int)(Math.random()*Verbs.size()));
 					int subject = (int)(Math.random()*6);
@@ -40,6 +57,7 @@ static Scanner input = new Scanner(System.in);
 			}
 			
 		} while (!next.equals("0"));
+		
 		System.out.println("Thank you for playing Spanish verb conjugation trainer. Practice makes Permanent!");
 
 	}
@@ -47,8 +65,26 @@ static Scanner input = new Scanner(System.in);
 	public static void PresentIndicative() {
 
 	}
-	public static void Preterite() {
+	public static String Preterite(int subject, String question) {
 		
+		String ending = question.substring(question.length()-2);
+		String correct;
+		
+		if (ending.equals("ar")){
+			String toAdd[] = {"é", "aste", "ó", "amos", "asteis", "aron"};
+			correct = question.substring(0, question.length()-2);
+			correct += toAdd[subject];
+			return correct;
+		}
+		if (ending.equals("er") || ending.equals("ir")){
+			String toAdd[] = {"í", "iste", "ió", "imos", "isteis", "ieron"};
+			correct = question.substring(0, question.length()-2);
+			correct += toAdd[subject];
+			return correct;
+		}
+		
+		
+		return "";
 	}
 	
 	public static String Imperfect(int subject, String question) {

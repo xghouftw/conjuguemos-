@@ -19,29 +19,36 @@ static Scanner input = new Scanner(System.in);
 			for (int i = 0; i < Menu.length; i++) System.out.println(i + ". " + Menu[i]);
 			next = input.nextLine();
 			if (next.equals("1")) {
-				
-				PresentIndicative();
-			}
-			if (next.equals("2")) {
-				
-				System.out.println("---Preterite Mode---\n\nConjugate the following verbs in the preterite for the given pronouns. \nRespond 0 to Quit to main menu");
-				
+				System.out.println("---Present Indicative Mode---\nRespond 0 to Quit to main menu");
 				String response;
 				
 				do {
-					
-					int subjectIndex = (int)(Math.random()*6);
 					String question = Verbs.get((int)(Math.random()*Verbs.size()));
-					System.out.println(Pronouns[subjectIndex] + ", " + question);
+					int subject = (int)(Math.random()*6);
+					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
-					String answer = Preterite(subjectIndex, question);
+					String answer = PresentIndicative(subject, question);
 					if (response.equals(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
-				} while (response.equals("0")==false);
-				
+				} while(!response.equals("0"));
 			}
-			if (next.equals("3")) {
+			
+			if (next.equals("2")) {
+				System.out.println("---Preterite Mode---\nRespond 0 to Quit to main menu");
+				String response;
 				
+				do {
+					String question = Verbs.get((int)(Math.random()*Verbs.size()));
+					int subject = (int)(Math.random()*6);
+					System.out.println(Pronouns[subject] + " (" + question + ")");
+					response = input.nextLine();
+					String answer = Preterite(subject, question);
+					if (response.equals(answer)) System.out.println("Correct!");
+					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
+				} while(!response.equals("0"));	
+			}
+			
+			if (next.equals("3")) {
 				System.out.println("---Imperfect Mode--\nRespond 0 to Quit to main menu");
 				String response;
 				
@@ -62,35 +69,68 @@ static Scanner input = new Scanner(System.in);
 
 	}
 	
-	public static void PresentIndicative() {
-
+	public static String PresentIndicative(int subject, String question) {
+		String correct = "";
+		String ending = question.substring(question.length()-2);
+		
+		//totally irregular
+		String irregulars[][] = {{"ser","soy","eres","es","somos","sois","son"},{"estar","estoy","estás","está","estamos","estáis","están"},{"ir","voy","vas","va","vamos","vais","van"},{"haber","he","has","hay","hemos","habéis","han"}};
+		for (int i = 0; i < irregulars.length; i++) {
+			if (question.equals(irregulars[i][0])) {
+				correct = irregulars[i][subject+1];
+				return correct;
+			}
+		}
+		/*All the stupid exceptions...
+		 * 
+		 */
+		
+		//regular
+		if (ending.equals("ar")){
+			String add[] = {"o","as","a","amos","áis","an"};
+			correct += add[subject];
+			return correct;
+		}
+		if (ending.equals("er")){
+			String add[] = {"o","es","e","emos","éis","en"};
+			correct += add[subject];
+			return correct;
+		}
+		if (ending.equals("ar")){
+			String add[] = {"o","es","e","imos","ís","en"};
+			correct += add[subject];
+			return correct;
+		}
+		return "Error";
 	}
 	public static String Preterite(int subject, String question) {
-		
+		String correct = "";
 		String ending = question.substring(question.length()-2);
-		String correct;
 		
+		/*All the stupid exceptions...
+		 * 
+		 */
+		
+		//regular
+		correct = question.substring(0, question.length()-2);
 		if (ending.equals("ar")){
-			String toAdd[] = {"é", "aste", "ó", "amos", "asteis", "aron"};
-			correct = question.substring(0, question.length()-2);
-			correct += toAdd[subject];
+			String add[] = {"é","aste","ó","amos","asteis","aron"};
+			correct += add[subject];
 			return correct;
 		}
 		if (ending.equals("er") || ending.equals("ir")){
-			String toAdd[] = {"í", "iste", "ió", "imos", "isteis", "ieron"};
-			correct = question.substring(0, question.length()-2);
-			correct += toAdd[subject];
+			String add[] = {"í","iste","ió","imos","isteis","ieron"};
+			correct += add[subject];
 			return correct;
 		}
-		
-		
-		return "";
+		return "Error";
 	}
 	
 	public static String Imperfect(int subject, String question) {
 			String correct = "";
 			String ending = question.substring(question.length()-2);
 			
+			//totally irregular
 			String irregulars[][] = {{"ser","era","eras","era","éramos","erais","eran"},{"ir","iba","ibas","iba","íbamos","ibais","iban"},{"ver","veía","veías","veía","veíamos","veíais","veían"}};
 			for (int i = 0; i < irregulars.length; i++) {
 				if (question.equals(irregulars[i][0])) {
@@ -99,8 +139,9 @@ static Scanner input = new Scanner(System.in);
 				}
 			}
 			
+			//regular
 			correct = question.substring(0, question.length()-2);
-			if (ending.equals("ar")) {
+			if (ending.equals("ar")) { 
 				String add[] = {"aba","abas","aba","ábamos","abais","aban"};
 				correct += add[subject];
 				return correct;
@@ -111,5 +152,5 @@ static Scanner input = new Scanner(System.in);
 				return correct;
 			}
 			return "Error";
-		}
 	}
+}

@@ -107,9 +107,24 @@ static Scanner input = new Scanner(System.in);
 		String correct = "";
 		String ending = question.substring(question.length()-2);
 		
-		/*All the stupid exceptions...
-		 * 
-		 */
+		/*CASE 1 --> if the verb ends in car, gar, or zar, then it changes to qué, gué, or cé respectively
+		  CASE 2 --> if the verb ends in caer, eer, oer, oír, or uir, then spelling changes occur in third person singular and plural. caer to cayó and cayeron,
+		  eer to eyó and eyeron, oer to oyó and oyeron, oír to oyó and oyeron, uir to uyó and uyeron.
+		  CASE 3 --> -ir verbs that stem change in the present also stem change in preterite - only in third person singular and plural. e->ie, e->i, o-> ue.
+		  CASE 4 --> completely irregular "FUJI verbs" 
+		  F Group: Ser and ir go to {fui, fuiste, fue, fuimos, fuisteis, fueron}
+		  U Group: andar->anduv, estar->estuv, caber->cup, poder->pud, poner->pus, saber->sup, tener->tuv.
+		  J group: verbs ending in -cir may have that part truncated and replaced by a j, traer->traj.
+		  I group: querer->quis-, venir->vin-.
+		  
+		  Special endings for U and I groups and special endings for J groups.
+		  
+		  CASE 5 --> completely irregular: dar and hacer (maybe should go with F group)
+		
+		
+		
+		
+		*/
 		
 		//regular
 		correct = question.substring(0, question.length()-2);

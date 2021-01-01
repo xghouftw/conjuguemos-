@@ -28,7 +28,7 @@ static Scanner input = new Scanner(System.in);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
 					String answer = PresentIndicative(subject, question);
-					if (response.equals(answer)) System.out.println("Correct!");
+					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));
 			}
@@ -43,7 +43,7 @@ static Scanner input = new Scanner(System.in);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
 					String answer = Preterite(subject, question);
-					if (response.equals(answer)) System.out.println("Correct!");
+					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));	
 			}
@@ -58,7 +58,7 @@ static Scanner input = new Scanner(System.in);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
 					String answer = Imperfect(subject, question);
-					if (response.equals(answer)) System.out.println("Correct!");
+					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));
 			}

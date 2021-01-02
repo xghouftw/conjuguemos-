@@ -116,7 +116,7 @@ static Scanner input = new Scanner(System.in);
 			if (ending3.equals("car")) {
 				return shortStem + "qué";
 			}
-			if (ending3.equals("gar")) {
+			else if (ending3.equals("gar")) {
 				return shortStem + "gué";
 			}
 			else if (ending3.equals("zar")) {
@@ -132,16 +132,16 @@ static Scanner input = new Scanner(System.in);
 				return shortStem + "ayeron";
 			}
 			
-			if (ending3.equals("eer")) {
+			else if (ending3.equals("eer")) {
 				if (subject==2) return shortStem + "eyó";
 				return shortStem + "eyeron";
 			}
 			
-			if (ending3.equals("oer")||ending3.equals("oír")) {
+			else if (ending3.equals("oer")||ending3.equals("oír")) {
 				if (subject==2) return shortStem + "oyó";
 				return shortStem + "oyeron";
 			}
-			if (ending3.equals("uír")) {
+			else if (ending3.equals("uír")) {
 				if (subject==2) return shortStem + "uyó";
 				return shortStem + "uyeron";
 			}

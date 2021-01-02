@@ -27,7 +27,7 @@ static Scanner input = new Scanner(System.in);
 					int subject = (int)(Math.random()*6);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
-					String answer = PresentIndicative(subject, question);
+					String answer = PresentIndicative.conjugate(subject, question);
 					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));
@@ -42,7 +42,7 @@ static Scanner input = new Scanner(System.in);
 					int subject = (int)(Math.random()*6);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
-					String answer = Preterite(subject, question);
+					String answer = Preterite.conjugate(subject, question);
 					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));	
@@ -57,7 +57,7 @@ static Scanner input = new Scanner(System.in);
 					int subject = (int)(Math.random()*6);
 					System.out.println(Pronouns[subject] + " (" + question + ")");
 					response = input.nextLine();
-					String answer = Imperfect(subject, question);
+					String answer = Imperfect.conjugate(subject, question);
 					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
 					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
 				} while(!response.equals("0"));
@@ -68,5 +68,4 @@ static Scanner input = new Scanner(System.in);
 		System.out.println("Thank you for playing Spanish verb conjugation trainer. Practice makes Permanent!");
 
 	}
-	
 }

@@ -106,25 +106,60 @@ static Scanner input = new Scanner(System.in);
 	public static String Preterite(int subject, String question) {
 		String correct = "";
 		String ending = question.substring(question.length()-2);
+		String ending3 = question.substring(question.length()-3);
+		String ending4 = question.substring(question.length()-4);
+		String stem = question.substring(0, question.length()-2);
+		String shortStem = stem.substring(0, stem.length()-1);
 		
-		/*CASE 1 --> if the verb ends in car, gar, or zar, then in first person singular it changes to qué, gué, or cé respectively
-		  CASE 2 --> if the verb ends in caer, eer, oer, oír, or uir, then spelling changes occur in third person singular and plural. caer to cayó and cayeron,
-		  eer to eyó and eyeron, oer to oyó and oyeron, oír to oyó and oyeron, uir to uyó and uyeron.
-		  CASE 3 --> -ir verbs that stem change in the present also stem change in preterite - only in third person singular and plural. e->ie, e->i, o-> ue.
-		  CASE 4 --> Irregular "FUJI verbs" 
-		  F Group: Ser and ir go to {fui, fuiste, fue, fuimos, fuisteis, fueron}
+		// Verbs ending in -Car, -Gar, or -Zar
+		if (subject==0) {
+			if (ending3.equals("car")) {
+				return shortStem + "qué";
+			}
+			if (ending3.equals("gar")) {
+				return shortStem + "gué";
+			}
+			else if (ending3.equals("zar")) {
+				return shortStem + "cé";
+			}
+		}
+		
+		// Spelling changes for verbs ending in -caer, -eer, -oer, -oír, or -uir
+		if (subject==2||subject==5) {
+			
+			if (ending4.equals("caer")) {
+				if (subject==2) return shortStem + "ayó";
+				return shortStem + "ayeron";
+			}
+			
+			if (ending3.equals("eer")) {
+				if (subject==2) return shortStem + "eyó";
+				return shortStem + "eyeron";
+			}
+			
+			if (ending3.equals("oer")||ending3.equals("oír")) {
+				if (subject==2) return shortStem + "oyó";
+				return shortStem + "oyeron";
+			}
+			if (ending3.equals("uír")) {
+				if (subject==2) return shortStem + "uyó";
+				return shortStem + "uyeron";
+			}
+			
+		}
+		
+		// -ir ending verbs that stem change in present also change in third person singular and plural forms (o-->ue, e-->i, e-->ie)	
+		
+		/* UJI group verbs (decided to put ser and ir with completely irregular ones)
+		 * 
 		  U Group: andar->anduv, estar->estuv, caber->cup, poder->pud, poner->pus, saber->sup, tener->tuv, haber->hub.
 		  J group: verbs ending in -cir may have that part truncated and replaced by a j, traer->traj.
 		  I group: querer->quis-, venir->vin-.
 		  
 		  Special endings for U and I groups and special endings for J groups.
-		  
-		  CASE 5 --> completely irregular: dar, ver and hacer (maybe should go with F group)
+		  */
 		
-		
-		
-		
-		*/
+		// Completely irregular (ser, ir, dar, ver, hacer)
 		
 		//regular
 		correct = question.substring(0, question.length()-2);

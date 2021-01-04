@@ -24,6 +24,10 @@ public class PresentIndicative {
 			stem = question.substring(0, question.lastIndexOf("e")) + "i" + question.substring(question.lastIndexOf("e")+1, question.length()-2);
 			stemmed = true;
 		}
+		if (question.endsWith("dormir") || question.endsWith("morir")) {
+			stem = question.substring(0, question.lastIndexOf("o")) + "ue" + question.substring(question.lastIndexOf("o")+1, question.length()-2);
+			stemmed = true;
+		}
 		if (question.endsWith("eír")) {
 			correct = question.substring(0,question.length()-3);
 			String add[] = {"ío","íes","íe","eímos","eís","íen"};

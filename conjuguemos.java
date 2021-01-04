@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 public class conjuguemos {
 	
-static String Pronouns[] = {"Yo","TÃº","Ã‰l, Ella, Usted","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
+static String Pronouns[] = {"Yo","Tú","Él, Ella, Usted","Nosotros","Vosotros","Ellos, Ellas, Ustedes"};
 static ArrayList<String> Verbs = new ArrayList<String>();
 static Scanner input = new Scanner(System.in);
 
@@ -10,60 +10,30 @@ static Scanner input = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new FileReader("VerbBank.txt"));
 		String verb = "";
 		while ((verb = br.readLine()) != null) Verbs.add(verb);
-		
-		System.out.print("***Welcome to the Spanish verb conjugation trainer!***\nType a number from the menu to continue.\n");
-		String Menu[] = {"Quit","Present Indicative","Preterite","Imperfect"};
-		
+	
+		String Menu[] = {"Quit","Present Indicative","Preterite","Imperfect"};	
 		String next;
+		int mode;
+		System.out.println("***Welcome to the Spanish verb conjugation lookup!***");
+		
 		do {
+			System.out.println("Type a number from the menu to continue");
 			for (int i = 0; i < Menu.length; i++) System.out.println(i + ". " + Menu[i]);
 			next = input.nextLine();
-			if (next.equals("1")) {
-				System.out.println("---Present Indicative Mode---\nRespond 0 to Quit to main menu");
-				String response;
-				
-				do {
-					String question = Verbs.get((int)(Math.random()*Verbs.size()));
-					int subject = (int)(Math.random()*6);
-					System.out.println(Pronouns[subject] + " (" + question + ")");
-					response = input.nextLine();
-					String answer = PresentIndicative.conjugate(subject, question);
-					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
-					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
-				} while(!response.equals("0"));
-			}
+			mode = Integer.parseInt(next.trim());
 			
-			if (next.equals("2")) {
-				System.out.println("---Preterite Mode---\nRespond 0 to Quit to main menu");
-				String response;
-				
-				do {
-					String question = Verbs.get((int)(Math.random()*Verbs.size()));
-					int subject = (int)(Math.random()*6);
-					System.out.println(Pronouns[subject] + " (" + question + ")");
-					response = input.nextLine();
-					String answer = Preterite.conjugate(subject, question);
-					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
-					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
-				} while(!response.equals("0"));	
+			while (true) {
+				System.out.println("---Conjugation Lookup---\nType a verb, or 0 to quit");
+				next = input.nextLine();
+				String question = next.trim().toLowerCase();
+				if (question.equals("0")) break;
+				System.out.print("In the " + Menu[mode] + " tense, " + question + " is conjugated as: ");
+				if (mode == 1) for (int i = 0; i < 6; i++) System.out.print(PresentIndicative.conjugate(i, question) + " ");;
+				if (mode == 2) for (int i = 0; i < 6; i++) System.out.print(Preterite.conjugate(i, question) + " ");
+				if (mode == 3) for (int i = 0; i < 6; i++) System.out.print(Imperfect.conjugate(i, question) + " ");
+				System.out.println();
 			}
-			
-			if (next.equals("3")) {
-				System.out.println("---Imperfect Mode---\nRespond 0 to Quit to main menu");
-				String response;
-				
-				do {
-					String question = Verbs.get((int)(Math.random()*Verbs.size()));
-					int subject = (int)(Math.random()*6);
-					System.out.println(Pronouns[subject] + " (" + question + ")");
-					response = input.nextLine();
-					String answer = Imperfect.conjugate(subject, question);
-					if (response.equalsIgnoreCase(answer)) System.out.println("Correct!");
-					else System.out.println("Incorrect! The correct conjugation is: " + answer + ".");
-				} while(!response.equals("0"));
-			}
-			
-		} while (!next.equals("0"));
+		} while (mode != 0);
 		
 		System.out.println("Thank you for playing Spanish verb conjugation trainer. Practice makes Permanent!");
 

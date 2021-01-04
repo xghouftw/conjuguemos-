@@ -1,7 +1,6 @@
 public class PresentIndicative {
 	public static String conjugate (int subject, String question) {
 		String correct = "";
-		String ending = question.substring(question.length()-2);
 		
 		//totally irregular
 		String irregulars[][] = {{"ser","soy","eres","es","somos","sois","son"},{"estar","estoy","estás","está","estamos","estáis","están"},{"ir","voy","vas","va","vamos","vais","van"},{"haber","he","has","hay","hemos","habéis","han"}};
@@ -31,10 +30,15 @@ public class PresentIndicative {
 			correct += add[subject];
 			return correct;
 		}
+		if (question.endsWith("uir") && !question.endsWith("guir")) {
+			stem = question.substring(0, question.length()-2) + "y";
+			stemmed = true;
+		}
+		
 		
 		//regular
 		correct = question.substring(0, question.length()-2);
-		if (ending.equals("ar")){
+		if (question.endsWith("ar")){
 			String add[] = {"o","as","a","amos","áis","an"};
 			if (stemmed && (subject == 5 || subject < 3)) {
 				correct = stem;
@@ -42,7 +46,7 @@ public class PresentIndicative {
 			correct += add[subject];
 			return correct;
 		}
-		if (ending.equals("er")){
+		if (question.endsWith("er")){
 			String add[] = {"o","es","e","emos","éis","en"};
 			if (stemmed && subject == 5 || subject < 3) {
 				correct = stem;
@@ -50,7 +54,7 @@ public class PresentIndicative {
 			correct += add[subject];
 			return correct;
 		}
-		if (ending.equals("ir")){
+		if (question.endsWith("ir")){
 			String add[] = {"o","es","e","imos","ís","en"};
 			if (stemmed && subject == 5 || subject < 3) {
 				correct = stem;

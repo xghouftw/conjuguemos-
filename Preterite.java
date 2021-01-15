@@ -38,8 +38,8 @@ public class Preterite {
 			}
 		}
 		
-		// Double vowel ending verbs
-		if (stem.endsWith("a")||stem.endsWith("e")||stem.endsWith("i")||stem.endsWith("o")||stem.endsWith("u")) return stem + doubleVowelEndings[subject];
+		// Verbs ending in -aer, -eer, -oer, -oír, or -uir have spelling changes
+		if (question.endsWith("aer")||question.endsWith("eer")||question.endsWith("oer")||question.endsWith("oír")||question.endsWith("uir")) return stem + doubleVowelEndings[subject];
 		
 		// -ir stem changing verbs
 		String isuffix[] = {"entir","ertir","erir","venir", "edir","etir","egir","eñir","decir"};

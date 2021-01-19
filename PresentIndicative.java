@@ -39,6 +39,15 @@ public class PresentIndicative {
 			stemmed = true;
 		}
 		
+		//Pattern to -ar/-er stem changing verbs 
+		//O-ue
+		String[] ueSuffix = {"olver", "cordar", "orzar", "probar", "colgar", "over", "contar", "ostar", "contrar", "morder", "mostrar", "poder", "torcer", "sonar", "tronar", "soñar", "volar", "cocer", "oler"};
+		for (int i = 0; i < ueSuffix.length; i++) if (question.endsWith(ueSuffix[i])) {
+			stem = question.substring(0, question.lastIndexOf("o")) + "ue" + question.substring(question.lastIndexOf("o")+1, question.length() -2);
+			if (stem.equalsIgnoreCase("uel")) stem = "h" + stem;
+			if ((stem.endsWith("uec"))&&subject==0) stem = stem.substring(0, stem.length()-1) + "z" + stem.substring(stem.length()-1);
+			stemmed = true;
+		}
 		
 		//regular
 		correct = question.substring(0, question.length()-2);
